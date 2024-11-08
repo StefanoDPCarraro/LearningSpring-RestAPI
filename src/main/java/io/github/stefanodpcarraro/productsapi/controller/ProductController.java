@@ -9,7 +9,8 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/products")
 public class ProductController {
     @PostMapping
-    public void createProduct(Product product) {
+    public Product createProduct(Product product) {
         System.out.println("Recieved! " + product);
+        return product;
     }
 }
