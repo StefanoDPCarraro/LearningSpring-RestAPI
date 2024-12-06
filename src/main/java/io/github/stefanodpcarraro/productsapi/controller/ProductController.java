@@ -3,6 +3,7 @@ package io.github.stefanodpcarraro.productsapi.controller;
 import io.github.stefanodpcarraro.productsapi.model.Product;
 import io.github.stefanodpcarraro.productsapi.repository.ProductRepository;
 
+import java.util.List;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -47,5 +49,10 @@ public class ProductController {
     public void update(@PathVariable String id, @RequestBody Product product){
         product.setId(id);
         productRepository.save(product);
+    }
+
+    @GetMapping
+    public List<Product> get(@RequestParam("name") String name){
+        return productRepository.findByName(name);
     }
 }
